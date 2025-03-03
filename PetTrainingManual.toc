@@ -1,9 +1,9 @@
 ## Interface: 11500
-## Title: Tamed
+## Title: PetTrainingManual
 ## Author: https://github.com/moody
-## Version: @project-version@
+## Version: 0.0.1001
 ## Notes: A guide to tamed pet abilities.
-## SavedVariables: __TAMED_ADDON_DB__
+## SavedVariables: __TAMED_ADDON_DB__ , PetTrainingManualDB
 
 # Libraries
 libs\LibStub.lua
@@ -37,3 +37,8 @@ src\ui\pin_helper.lua
 src\ui\main.lua
 src\ui\groups\ability.lua
 src\ui\groups\options.lua
+
+PetTrainingManual\ENUMS.lua
+PetTrainingManual\Core.lua
+PetTrainingManual\Options.lua
+PetTrainingManual\UIHelper.lua
