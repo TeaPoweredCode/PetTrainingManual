@@ -28,7 +28,7 @@ src\locale.lua
 src\data.lua
 src\commands.lua
 src\db.lua
-src\tooltips.lua
+
 
 # UI
 src\ui\minimap_icon.lua
@@ -42,3 +42,5 @@ PetTrainingManual\ENUMS.lua
 PetTrainingManual\Core.lua
 PetTrainingManual\Options.lua
 PetTrainingManual\UIHelper.lua
+
+PetTrainingManual\tooltips.lua
