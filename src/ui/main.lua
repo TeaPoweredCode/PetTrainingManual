@@ -92,10 +92,12 @@ function TreeGroup:Create(parent)
 end
 
 function TreeGroup:BuildTree()
-  local tree = {
-    { text = L.TAMED, value = "SUBHEADER_1" },
-  }
+  local tree = {}
 
+  ----
+  -- Add tameable abilities
+  ----
+  tree[#tree+1] = { text = L.TAMED, value = "SUBHEADER_1" }
   do -- Add ability groups to `tree`.
     local abilities = {}
     for id, ability in pairs(TameableAbilities) do
@@ -125,8 +127,32 @@ function TreeGroup:BuildTree()
   ----
   -- Add taught abilities
   ----
-  
   tree[#tree+1] = { text = L.TAUGHT, value = "SUBHEADER_2" }
+  do -- Add ability groups to `tree`.
+    local Tabilities = {}
+    for id, ability in pairs(TaughtAbilities) do
+      local children = {}
+
+      for i in ipairs(ability.ranks) do
+        children[#children+1] = {
+          text = ("%s %s"):format(L.RANK, i),
+          value = i
+        }
+      end
+
+      Tabilities[#Tabilities+1] = {
+        text = ability.name,
+        value = id,
+        icon = ability.icon,
+        disabled = true,
+        children = children
+      }
+    end
+
+    -- Sort `abilities` by `text`, and insert into `tree`.
+    table.sort(Tabilities, function(a, b) return a.text < b.text end)
+    for _, ability in ipairs(Tabilities) do tree[#tree+1] = ability end
+  end
 
 
   return tree
@@ -140,12 +166,15 @@ function TreeGroup:OnGroupSelected(event, value)
   parent:PauseLayout()
 
   -- Create a ui based on the selected tree group `value`.
-  if value == "!options" then
-    UI.Groups.Options:Create(parent)
-  else
+  if not string.starts(value, "SUBHEADER") then
     local abilityId, abilityRank = value:match("^(.+)\001(%d+)$")
-    local ability = TameableAbilities[abilityId] or error("Invalid ability id: " .. abilityId)
-    UI.Groups.Ability:Create(parent, ability, tonumber(abilityRank))
+    if TameableAbilities[abilityId] ~= nil then 
+      UI.Groups.Ability:Create(parent, TameableAbilities[abilityId], tonumber(abilityRank))
+    elseif TaughtAbilities[abilityId] ~= nil then 
+
+    else 
+      error("Invalid ability id: " .. abilityId)
+    end
   end
 
   parent:ResumeLayout()
@@ -169,4 +198,8 @@ _G.CloseSpecialWindows = function()
   end
 
   return found
+end
+
+function string.starts(String,Start)
+  return string.sub(String,1,string.len(Start))==Start
 end

@@ -3,7 +3,32 @@ local Colors = Addon.Colors
 local DCL = Addon.Libs.DCL
 local L = Addon.Locale
 local TameableAbilities = Addon.TameableAbilities
+local TaughtAbilities = Addon.TaughtAbilities
 local TameableNPCs = Addon.TameableNPCs
+
+-- Update TaughtAbilities with in-game data.
+for key, ability in pairs(TaughtAbilities) do
+  -- Remove unavailable ranks.
+  for i = #ability.ranks, 1, -1 do
+    local rank = ability.ranks[i]
+    if (GetSpellInfo(rank.spell_id) == nil) then
+      table.remove(ability.ranks, i)
+    end
+  end
+
+  --If ability exists, update its name and icon.
+  if #ability.ranks > 0 then
+    local name, _, icon = GetSpellInfo(ability.ranks[1].spell_id)
+    if type(name) == "string" and type(icon) == "number" then
+      ability.name = name
+      ability.icon = icon
+    else
+      TaughtAbilities[key] = nil
+    end
+  else
+    TaughtAbilities[key] = nil
+  end
+end
 
 -- Update TameableAbilities with in-game data.
 for key, ability in pairs(TameableAbilities) do

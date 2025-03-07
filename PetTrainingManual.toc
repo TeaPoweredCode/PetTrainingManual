@@ -20,6 +20,7 @@ libs\DethsColorLib\DethsColorLib.xml
 
 # Data
 data\TameableAbilities.lua
+data\TaughtAbilities.lua
 data\TameableNPCs.lua
 
 # General
