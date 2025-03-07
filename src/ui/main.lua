@@ -5,6 +5,7 @@ local DCL = Addon.Libs.DCL
 local L = Addon.Locale
 local pairs = pairs
 local TameableAbilities = Addon.TameableAbilities
+local TaughtAbilities = Addon.TaughtAbilities
 local UI = Addon.UI
 local Widgets = Addon.UI.Widgets
 
@@ -92,8 +93,7 @@ end
 
 function TreeGroup:BuildTree()
   local tree = {
-    { text = L.OPTIONS, value = "!options" },
-    { text = " ", value = "BLANK_1", disabled = true }
+    { text = L.TAMED, value = "SUBHEADER_1" },
   }
 
   do -- Add ability groups to `tree`.
@@ -121,6 +121,13 @@ function TreeGroup:BuildTree()
     table.sort(abilities, function(a, b) return a.text < b.text end)
     for _, ability in ipairs(abilities) do tree[#tree+1] = ability end
   end
+
+  ----
+  -- Add taught abilities
+  ----
+  
+  tree[#tree+1] = { text = L.TAUGHT, value = "SUBHEADER_2" }
+
 
   return tree
 end

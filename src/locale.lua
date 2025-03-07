@@ -26,3 +26,6 @@ L["TOGGLE_UI"] = "Toggle UI"
 L["TRAINING_COST"] = "Training Cost"
 L["TYPE"] = "Type"
 L["VERSION"] = "Version"
+
+L["TAMED"] = "Tamed"
+L["TAUGHT"] = "Taught"
