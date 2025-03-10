@@ -46,18 +46,6 @@ function UI:Create()
   frame:SetLayout("Flow")
   self.frame = frame
 
-  -- Add heading.
-  Widgets:Heading(
-    frame,
-    ("%s: %s"):format(
-      L.VERSION,
-      DCL:ColorString(Addon.VERSION, Colors.Primary)
-    )
-  )
-
-  -- Add spacer.
-  Widgets:Spacer(frame)
-
   -- Add TreeGroup.
   TreeGroup:Create(frame)
 
@@ -169,9 +157,9 @@ function TreeGroup:OnGroupSelected(event, value)
   if not string.starts(value, "SUBHEADER") then
     local abilityId, abilityRank = value:match("^(.+)\001(%d+)$")
     if TameableAbilities[abilityId] ~= nil then 
-      UI.Groups.Ability:Create(parent, TameableAbilities[abilityId], tonumber(abilityRank))
+      UI.Groups.TameableAbility:Create(parent, TameableAbilities[abilityId], tonumber(abilityRank))
     elseif TaughtAbilities[abilityId] ~= nil then 
-
+      UI.Groups.TaughtAbility:Create(parent, TaughtAbilities[abilityId], tonumber(abilityRank))
     else 
       error("Invalid ability id: " .. abilityId)
     end

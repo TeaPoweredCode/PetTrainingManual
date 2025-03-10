@@ -24,8 +24,9 @@ Addon.Locale = {}
 
 Addon.UI = {
   Groups = {
-    Ability = {},
-    Options = {},
+    TameableAbility = {},
+    TaughtAbility = {},
+    Taught = {},
   },
   MinimapIcon = {},
   PinHelper = {},

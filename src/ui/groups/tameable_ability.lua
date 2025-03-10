@@ -1,12 +1,12 @@
 local _, Addon = ...
-local Ability = Addon.UI.Groups.Ability
+local TameableAbility = Addon.UI.Groups.TameableAbility
 local DCL = Addon.Libs.DCL
 local HBDPins = Addon.Libs.HBDPins
 local L = Addon.Locale
 local PinHelper = Addon.UI.PinHelper
 local Widgets = Addon.UI.Widgets
 
-function Ability:Create(parent, ability, rankIndex)
+function TameableAbility:Create(parent, ability, rankIndex)
   -- Tooltip/heading button.
   local title = ("%s (%s %s)"):format(ability.name, L.RANK, rankIndex)
   Widgets:Button({
@@ -30,7 +30,7 @@ function Ability:Create(parent, ability, rankIndex)
   self:AddTameableNPCsGroup(parent, ability, rankIndex)
 end
 
-function Ability:AddPetLevelGroup(parent, ability, rankIndex)
+function TameableAbility:AddPetLevelGroup(parent, ability, rankIndex)
   parent = Widgets:InlineGroup({
     parent = parent,
     title = L.PET_LEVEL,
@@ -44,10 +44,10 @@ function Ability:AddPetLevelGroup(parent, ability, rankIndex)
   })
 end
 
-function Ability:AddTrainingCostGroup(parent, ability, rankIndex)
+function TameableAbility:AddTrainingCostGroup(parent, ability, rankIndex)
   parent = Widgets:InlineGroup({
     parent = parent,
-    title = L.TRAINING_COST,
+    title = L.TRAINING_POINTS,
     fullWidth = true,
   })
 
@@ -58,10 +58,10 @@ function Ability:AddTrainingCostGroup(parent, ability, rankIndex)
   })
 end
 
-function Ability:AddLearnedByGroup(parent, ability)
+function TameableAbility:AddLearnedByGroup(parent, ability)
   parent = Widgets:InlineGroup({
     parent = parent,
-    title = L.LEARNABLE_BY,
+    title = L.LEARNABLE_FROM,
     fullWidth = true,
   })
 
@@ -76,10 +76,10 @@ function Ability:AddLearnedByGroup(parent, ability)
   })
 end
 
-function Ability:AddTameableNPCsGroup(parent, ability, rankIndex)
+function TameableAbility:AddTameableNPCsGroup(parent, ability, rankIndex)
   parent = Widgets:InlineGroup({
     parent = parent,
-    title = L.TAMEABLE_NPCS,
+    title = L.TAMEABLE_BEASTS,
     fullWidth = true
   })
 
@@ -98,7 +98,7 @@ function Ability:AddTameableNPCsGroup(parent, ability, rankIndex)
   end
 end
 
-function Ability:AddNPC(parent, npc)
+function TameableAbility:AddNPC(parent, npc)
   if not npc then return end
 
   local LABEL_S = DCL:ColorString("%s:", Addon.Colors.Label) .. " %s"

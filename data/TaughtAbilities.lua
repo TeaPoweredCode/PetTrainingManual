@@ -46,21 +46,21 @@ Addon.TaughtAbilities = {
       {
         ["pet_level"] = 50, 
         ["rank"] = 2,
-        ["spell_id"] = 24445,
+        ["spell_id"] = 24439 ,
         ["training_cost"] = 15,
         ["gold_cost"] = 1280
       },
       {
         ["pet_level"] = 30, 
         ["rank"] = 3,
-        ["spell_id"] = 24439,
+        ["spell_id"] = 24444,
         ["training_cost"] = 45,
         ["gold_cost"] = 2880
       },
       {
         ["pet_level"] = 40, 
         ["rank"] = 4,
-        ["spell_id"] = 24444,
+        ["spell_id"] = 24445,
         ["training_cost"] = 90,
         ["gold_cost"] = 5760
       },              
