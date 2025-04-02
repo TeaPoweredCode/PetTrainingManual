@@ -27,9 +27,10 @@ function UI:Toggle()
   end
 end
 
-function UI:Show()
+function UI:Show(beastTrainingWindow)
   if not self.frame then self:Create() end
   self.frame:Show()
+  self.frame:SetPoint("TOPLEFT", beastTrainingWindow , "TOPRIGHT", -35, -10)
 end
 
 function UI:Hide()
@@ -42,7 +43,7 @@ function UI:Create()
   frame:SetTitle(AddonName)
   frame:SetWidth(650)
   frame:SetHeight(500)
-  frame.frame:SetResizeBounds(650, 500)
+  --frame.frame:SetResizeBounds(650, 500)
   frame:SetLayout("Flow")
   self.frame = frame
 
@@ -82,6 +83,8 @@ end
 function TreeGroup:BuildTree()
   local tree = {}
 
+  local checkTexture = "|TInterface\\Buttons\\UI-CheckBox-Check:16:16|t"
+
   ----
   -- Add tameable abilities
   ----
@@ -93,7 +96,7 @@ function TreeGroup:BuildTree()
 
       for i in ipairs(ability.ranks) do
         children[#children+1] = {
-          text = ("%s %s"):format(L.RANK, i),
+          text = ("%s %s %s"):format(L.RANK, i, checkTexture),
           value = i
         }
       end

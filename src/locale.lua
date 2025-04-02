@@ -30,3 +30,7 @@ L["TAMED"] = "Tamed"
 L["TAUGHT"] = "Taught"
 L["COST_TO_LEARN"] = "Cost To Learn"
 L["TRAINING_POINTS"] = "Training Points"
+L["SKILL"] = "Skill"
+
+L["KNOWN_ABILITY_TOOLTIP"] = "You know this ability"
+L["UNKNOWN_ABILITY_TOOLTIP"] = "You dont know this ability"

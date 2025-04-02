@@ -24,13 +24,16 @@ Addon.Locale = {}
 
 Addon.UI = {
   Groups = {
+    BaseAbility = {},
     TameableAbility = {},
     TaughtAbility = {},
     Taught = {},
   },
   MinimapIcon = {},
   PinHelper = {},
-  Widgets = {}
+  Widgets = {},
+
+  ManualWindow = {}
 }
 
 -- OnInitialize().

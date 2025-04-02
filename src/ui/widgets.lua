@@ -88,25 +88,34 @@ end
 function Widgets:Label(options)
   local label = AceGUI:Create("Label")
   label:SetText(options.text)
-  label:SetFullWidth(options.fullWidth)
+
+  if(options.width) then  
+    label:SetWidth(options.width)
+  else
+    label:SetFullWidth(options.fullWidth)
+  end
 
   if options.color then
     label:SetColor(options.color.r, options.color.g, options.color.b)
   end
 
   if options.font then
-    if options.fontHeight then
-      label:SetFont(options.font, options.fontHeight, options.fontFlags)
-    else
-      label:SetFontObject(options.font)
-    end
+    label:SetFont(options.font.font, options.font.height, options.font.flags)
   end
 
-  if options.image then
+  if options.icon then
+    label:SetImage(options.icon.image)
+    label:SetImageSize(options.icon.size,options.icon.size)
+  elseif options.image then -- From Tamed 
     label:SetImage(options.image.path, unpack(options.image.texCoord))
     if options.image.width and options.image.height then
       label:SetImageSize(options.image.width, options.image.height)
     end
+  end
+
+  if options.tooltip then
+    label.frame:SetScript("OnEnter", options.tooltip.onEnter)
+    label.frame:SetScript("OnLeave", options.tooltip.onLeave)
   end
 
   options.parent:AddChild(label)

@@ -1,61 +1,24 @@
 local _, Addon = ...
+
+local BaseAbility = Addon.UI.Groups.BaseAbility
 local TameableAbility = Addon.UI.Groups.TameableAbility
 local DCL = Addon.Libs.DCL
 local HBDPins = Addon.Libs.HBDPins
 local L = Addon.Locale
 local PinHelper = Addon.UI.PinHelper
 local Widgets = Addon.UI.Widgets
+local AceGUI = Addon.Libs.AceGUI
 
-function TameableAbility:Create(parent, ability, rankIndex)
-  -- Tooltip/heading button.
-  local title = ("%s (%s %s)"):format(ability.name, L.RANK, rankIndex)
-  Widgets:Button({
-    parent = parent,
-    fullWidth = true,
-    text = "|cFFFFFFFF" .. title .. "|r",
-    height = 34,
-    onEnter = function()
-      GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
-      GameTooltip:SetHyperlink("spell:" .. ability.ranks[rankIndex].spell_id)
-      GameTooltip:Show()
-    end,
-    onLeave = function()
-      GameTooltip:Hide()
-    end
-  })
+local UI = Addon.UI
 
-  self:AddPetLevelGroup(parent, ability, rankIndex)
-  self:AddTrainingCostGroup(parent, ability, rankIndex)
+function TameableAbility:Create(parent, ability, rankIndex)  
+  local knowen = true
+  BaseAbility:AddSkillGroup(parent, ability, rankIndex, knowen)
+  BaseAbility:AddPetLevelGroup(parent, ability, rankIndex)
+  BaseAbility:AddTrainingCostGroup(parent, ability, rankIndex)
+
   self:AddLearnedByGroup(parent, ability)
   self:AddTameableNPCsGroup(parent, ability, rankIndex)
-end
-
-function TameableAbility:AddPetLevelGroup(parent, ability, rankIndex)
-  parent = Widgets:InlineGroup({
-    parent = parent,
-    title = L.PET_LEVEL,
-    fullWidth = true,
-  })
-
-  Widgets:Label({
-    parent = parent,
-    text = ability.ranks[rankIndex].pet_level or 1,
-    fullWidth = true
-  })
-end
-
-function TameableAbility:AddTrainingCostGroup(parent, ability, rankIndex)
-  parent = Widgets:InlineGroup({
-    parent = parent,
-    title = L.TRAINING_POINTS,
-    fullWidth = true,
-  })
-
-  Widgets:Label({
-    parent = parent,
-    text = ability.ranks[rankIndex].training_cost or 0,
-    fullWidth = true
-  })
 end
 
 function TameableAbility:AddLearnedByGroup(parent, ability)

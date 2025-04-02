@@ -37,8 +37,12 @@ src\ui\widgets.lua
 src\ui\pin_helper.lua
 src\ui\main.lua
 
-src\ui\groups\tameable_ability.lua
+src\ui\manual_window.lua
+
 src\ui\groups\options.lua
+
+src\ui\groups\base_ability.lua
+src\ui\groups\tameable_ability.lua
 src\ui\groups\taught_ability.lua
 
 PetTrainingManual\ENUMS.lua
