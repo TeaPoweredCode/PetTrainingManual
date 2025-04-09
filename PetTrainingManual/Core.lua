@@ -18,6 +18,7 @@ function PetTrainingManual:ADDON_LOADED(event, addOnName)
 		end
 
 		self:InitializeOptions()
+		self:InitializeOptionsNEW()
 		self:UnregisterEvent(event)
 	end
 end

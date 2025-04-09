@@ -34,3 +34,21 @@ L["SKILL"] = "Skill"
 
 L["KNOWN_ABILITY_TOOLTIP"] = "You know this ability"
 L["UNKNOWN_ABILITY_TOOLTIP"] = "You dont know this ability"
+
+
+L["BEAST_TOOLTIP"] = "Beast tooltip"
+
+L["SHOW_FOR"] = "Show for"
+L["SHOW_FOR_HUNTERS"] = "Hunters only"
+L["SHOW_FOR_ALL"] = "All classes"
+
+
+L["SHOW_WHEN"] = "Show when"
+L["SHOW_WHEN_ALL"] = "All beasts with abilities"
+L["SHOW_WHEN_UNLEARNT"] = "Only beasts with unlearnt abilities"
+L["SHOW_WHEN_NEVER"] = "Never"
+
+
+L["CREDITS"] = "Built on on Moody's Tamed - %s\n" ..
+               "Pet Trainer soruce - %s\n" ..
+               "v. - %s"

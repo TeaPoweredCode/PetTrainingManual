@@ -103,6 +103,8 @@ function Widgets:Label(options)
     label:SetFont(options.font.font, options.font.height, options.font.flags)
   end
 
+  label:SetJustifyH(options.align or "LEFT")
+
   if options.icon then
     label:SetImage(options.icon.image)
     label:SetImageSize(options.icon.size,options.icon.size)
@@ -122,16 +124,7 @@ function Widgets:Label(options)
   return label
 end
 
---[[
-  Helper function to create an empty, full width Label widget.
-]]
-function Widgets:Spacer(parent)
-  return self:Label({
-    parent = parent,
-    text = " ",
-    fullWidth = true
-  })
-end
+
 
 --[[
   Adds an AceGUI InlineGroup to a parent widget and returns it.
@@ -164,9 +157,60 @@ end
 --]]
 function Widgets:SimpleGroup(options)
   local simpleGroup = AceGUI:Create("SimpleGroup")
-  simpleGroup:SetFullWidth(options.fullWidth)
-  simpleGroup:SetFullHeight(options.fullHeight)
   simpleGroup:SetLayout(options.layout or "Flow")
-  options.parent:AddChild(simpleGroup)
+
+  if(options.height) then
+    simpleGroup:SetHeight(options.height)
+  else
+    simpleGroup:SetFullHeight(options.fullHeight or true)
+  end
+
+  if(options.width) then
+    simpleGroup:SetWidth(options.width)
+  else
+    simpleGroup:SetFullWidth(options.fullWidth or true)
+  end
+
+  if(options.parent) then
+    options.parent:AddChild(simpleGroup)
+  end
+
   return simpleGroup
+end
+
+function Widgets:CheckBox(options)
+  local checkbox = AceGUI:Create("CheckBox")
+  checkbox:SetLabel(options.text or nil)
+  checkbox:SetValue(options.checked or false)
+  checkbox:SetFullWidth(options.fullWidth or false)
+
+  checkbox.groupKey = options.groupKey or nil
+  checkbox.value = options.value or nil
+
+
+  if(options.OnValueChanged) then
+    checkbox:SetCallback("OnValueChanged", options.OnValueChanged)  
+  end
+
+  checkbox:SetValue(options.checked or false)
+
+  options.parent:AddChild(checkbox)
+
+  return checkbox
+end
+
+
+--[[
+  Helper function to create an empty, full width Label widget.
+]]
+function Widgets:Spacer(parent)
+  return self:Label({
+    parent = parent,
+    text = " ",
+    fullWidth = true
+  })
+end
+
+function Widgets:LineSpacer(parent)
+  return self:Heading(parent,"")
 end
