@@ -1,10 +1,12 @@
 local _, Addon = ...
-Addon.eTooltipShowFor = {
+local ENUMS = Addon.ENUMS
+
+ENUMS.eTooltipShowFor = {
     HuntersOnly = 1,
     AllClasses = 2,
 }
 
-Addon.eTooltipShowWhen = {
+ENUMS.eTooltipShowWhen = {
     AllBeasts = 1,
     UnlearntAbilities = 2,
     Never = 3,

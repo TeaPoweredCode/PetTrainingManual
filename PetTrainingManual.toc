@@ -3,7 +3,7 @@
 ## Author: https://github.com/moody
 ## Version: 0.0.1001
 ## Notes: A guide to tamed pet abilities.
-## SavedVariables: __TAMED_ADDON_DB__ , PetTrainingManualDB
+## SavedVariables: __HuntersPetManual_ADDON_DB__ , PetTrainingManualDB
 
 # Libraries
 libs\LibStub.lua
@@ -29,7 +29,7 @@ src\locale.lua
 src\data.lua
 src\commands.lua
 src\db.lua
-
+src\enums.lua
 
 # UI
 src\ui\minimap_icon.lua
@@ -39,7 +39,7 @@ src\ui\main.lua
 
 src\ui\manual_window.lua
 
-src\ui\groups\options.lua
+src\ui\options.lua
 
 src\ui\groups\base_ability.lua
 src\ui\groups\tameable_ability.lua
@@ -47,7 +47,4 @@ src\ui\groups\taught_ability.lua
 
 PetTrainingManual\ENUMS.lua
 PetTrainingManual\Core.lua
-PetTrainingManual\Options.lua
-PetTrainingManual\UIHelper.lua
-
 PetTrainingManual\tooltips.lua

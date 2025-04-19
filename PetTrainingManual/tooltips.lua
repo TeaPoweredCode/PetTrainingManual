@@ -8,17 +8,17 @@ local eTooltipShowFor = Addon.eTooltipShowFor
 local eTooltipShowWhen = Addon.eTooltipShowWhen
 
 GameTooltip:HookScript("OnTooltipSetUnit", function(self)
-  --if not DB.global.npc_tooltips then return end
-
-	local _, class = UnitClass("player")
-  if class ~= "HUNTER" and PetTrainingManual.db.tooltipShowFor == eTooltipShowFor.HuntersOnly then
+  -- Calc if to show
+  local _, class = UnitClass("player")
+  if class ~= "HUNTER" and DB.global.tooltip.showFor == eTooltipShowFor.HuntersOnly then
     return
   end
 
-  if PetTrainingManual.db.tooltipShowWhen == eTooltipShowWhen.Never then
+  if DB.global.tooltip.showWhen == eTooltipShowWhen.Never then
     return
   end
   
+  -- Do Show
   -- Get unit.
   local _, unit = self:GetUnit()
   if not unit then return end

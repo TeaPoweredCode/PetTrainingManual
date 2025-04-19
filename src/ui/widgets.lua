@@ -184,7 +184,7 @@ function Widgets:CheckBox(options)
   checkbox:SetValue(options.checked or false)
   checkbox:SetFullWidth(options.fullWidth or false)
 
-  checkbox.groupKey = options.groupKey or nil
+  checkbox.setting = options.setting or nil
   checkbox.value = options.value or nil
 
 

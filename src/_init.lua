@@ -22,6 +22,8 @@ Addon.Commands = {}
 Addon.DB = {}
 Addon.Locale = {}
 
+Addon.ENUMS = {}
+
 Addon.UI = {
   Groups = {
     BaseAbility = {},
@@ -29,6 +31,8 @@ Addon.UI = {
     TaughtAbility = {},
     Taught = {},
   },
+  Options = {},
+  
   MinimapIcon = {},
   PinHelper = {},
   Widgets = {},
@@ -41,4 +45,5 @@ function Addon.Libs.AceAddon:OnInitialize()
   Addon.DB:Initialize()
   Addon.UI.MinimapIcon:Initialize()
   Addon.Commands:Initialize()
+  Addon.UI.Options:Init()
 end
