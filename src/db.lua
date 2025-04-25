@@ -9,6 +9,9 @@ local defaults = {
     },
     minimapIcon = { hide = false },
     npc_tooltips = true,
+  },
+  char = {
+    knownAbilities = {}
   }
 }
 

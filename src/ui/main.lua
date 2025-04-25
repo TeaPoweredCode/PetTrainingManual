@@ -3,6 +3,7 @@ local AceGUI = Addon.Libs.AceGUI
 local Colors = Addon.Colors
 local DCL = Addon.Libs.DCL
 local L = Addon.Locale
+local DB = Addon.DB
 local pairs = pairs
 local TameableAbilities = Addon.TameableAbilities
 local TaughtAbilities = Addon.TaughtAbilities
@@ -57,6 +58,22 @@ end
 -- TreeGroup Functions
 -- ============================================================================
 
+function TreeGroup:CheckIfKnown(spellName , rank)
+
+  local checkTexture = "|TInterface\\Buttons\\UI-CheckBox-Check:16:16|t"
+  local knowen = false
+
+  for index, value in ipairs(DB.char.knownAbilities) do
+    if value == string.format("%s-%s", spellName, rank) then    
+      knowen = true
+      break
+    end
+  end
+  
+  return knowen and checkTexture or ""
+end
+
+
 function TreeGroup:Create(parent)
   local treeGroup = AceGUI:Create("TreeGroup")
   treeGroup:SetLayout("Fill")
@@ -82,9 +99,6 @@ end
 
 function TreeGroup:BuildTree()
   local tree = {}
-
-  local checkTexture = "|TInterface\\Buttons\\UI-CheckBox-Check:16:16|t"
-
   ----
   -- Add tameable abilities
   ----
@@ -94,10 +108,10 @@ function TreeGroup:BuildTree()
     for id, ability in pairs(TameableAbilities) do
       local children = {}
 
-      for i in ipairs(ability.ranks) do
+      for i in ipairs(ability.ranks) do        
         children[#children+1] = {
-          text = ("%s %s %s"):format(L.RANK, i, checkTexture),
-          value = i
+          text = ("%s %s %s"):format(L.RANK, i, self:CheckIfKnown(ability.name,i)),
+          value = i     
         }
       end
 
@@ -126,7 +140,7 @@ function TreeGroup:BuildTree()
 
       for i in ipairs(ability.ranks) do
         children[#children+1] = {
-          text = ("%s %s"):format(L.RANK, i),
+          text = ("%s %s %s"):format(L.RANK, i, self:CheckIfKnown(ability.name,i)),
           value = i
         }
       end
@@ -155,7 +169,6 @@ function TreeGroup:OnGroupSelected(event, value)
   local parent = AceGUI:Create("ScrollFrame")
   parent:SetLayout("Flow")
   parent:PauseLayout()
-
   -- Create a ui based on the selected tree group `value`.
   if not string.starts(value, "SUBHEADER") then
     local abilityId, abilityRank = value:match("^(.+)\001(%d+)$")

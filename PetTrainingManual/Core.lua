@@ -1,5 +1,6 @@
 local _, Addon = ...
 local UI = Addon.UI
+local DB = Addon.DB
 
 PetTrainingManual = CreateFrame("Frame")
 
@@ -9,14 +10,6 @@ end
 
 function PetTrainingManual:ADDON_LOADED(event, addOnName)
 	if addOnName == "PetTrainingManual" then
-		PetTrainingManualDB = PetTrainingManualDB or {}
-		self.db = PetTrainingManualDB
-		for k, v in pairs(self.defaults) do
-			if self.db[k] == nil then
-				self.db[k] = v
-			end
-		end
-
 		self:UnregisterEvent(event)
 	end
 end

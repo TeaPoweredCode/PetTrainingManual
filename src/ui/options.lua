@@ -1,6 +1,7 @@
 local _, Addon = ...
 local DB = Addon.DB
 local L = Addon.Locale
+local AceGUI = Addon.Libs.AceGUI
 
 local eTooltipShowFor = Addon.ENUMS.eTooltipShowFor
 local eTooltipShowWhen = Addon.ENUMS.eTooltipShowWhen
@@ -28,11 +29,9 @@ function Options:AddOptions(parent)
 	local scrollContainer = AceGUI:Create("ScrollFrame")
 	scrollContainer:SetFullWidth(true)
 	scrollContainer:SetFullHeight(true)
+	simpleGroup:AddChild(scrollContainer)	
+
 	self:AddToolTipOptions(scrollContainer)
-
-
-	simpleGroup:AddChild(scrollContainer)
-	
 
 	parent:AddChild(simpleGroup)
 end

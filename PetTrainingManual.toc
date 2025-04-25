@@ -31,6 +31,8 @@ src\commands.lua
 src\db.lua
 src\enums.lua
 
+src\tooltips.lua
+
 # UI
 src\ui\minimap_icon.lua
 src\ui\widgets.lua
@@ -45,6 +47,4 @@ src\ui\groups\base_ability.lua
 src\ui\groups\tameable_ability.lua
 src\ui\groups\taught_ability.lua
 
-PetTrainingManual\ENUMS.lua
 PetTrainingManual\Core.lua
-PetTrainingManual\tooltips.lua

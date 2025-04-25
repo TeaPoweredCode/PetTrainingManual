@@ -12,8 +12,7 @@ local AceGUI = Addon.Libs.AceGUI
 local UI = Addon.UI
 
 function TameableAbility:Create(parent, ability, rankIndex)  
-  local knowen = true
-  BaseAbility:AddSkillGroup(parent, ability, rankIndex, knowen)
+  BaseAbility:AddSkillGroup(parent, ability, rankIndex)
   BaseAbility:AddPetLevelGroup(parent, ability, rankIndex)
   BaseAbility:AddTrainingCostGroup(parent, ability, rankIndex)
 

@@ -4,8 +4,8 @@ local DB = Addon.DB
 local DCL = Addon.Libs.DCL
 local TameableNPCs = Addon.TameableNPCs
 
-local eTooltipShowFor = Addon.eTooltipShowFor
-local eTooltipShowWhen = Addon.eTooltipShowWhen
+local eTooltipShowFor = Addon.ENUMS.eTooltipShowFor
+local eTooltipShowWhen = Addon.ENUMS.eTooltipShowWhen
 
 GameTooltip:HookScript("OnTooltipSetUnit", function(self)
   -- Calc if to show

@@ -1,10 +1,20 @@
 local _, Addon = ...
 local BaseAbility = Addon.UI.Groups.BaseAbility
+local DB = Addon.DB
 local Widgets = Addon.UI.Widgets
 local AceGUI = Addon.Libs.AceGUI
 local L = Addon.Locale
 
-function BaseAbility:AddSkillGroup(parent, ability, rankIndex, knowen)
+function BaseAbility:AbilityKnown(spellName , rank)
+  for index, value in ipairs(DB.char.knownAbilities) do
+    if value == string.format("%s-%s", spellName, rank) then    
+      return true
+    end
+  end  
+  return false  
+end
+
+function BaseAbility:AddSkillGroup(parent, ability, rankIndex)
     inlineGroup = Widgets:InlineGroup({
       parent = parent,
       title = L.SKILL,
@@ -31,20 +41,22 @@ function BaseAbility:AddSkillGroup(parent, ability, rankIndex, knowen)
       }
     })
     
+    local Known = self:AbilityKnown(ability.name,rankIndex)
+
     local checkbox = AceGUI:Create("CheckBox")
     checkbox:SetLabel(nil)
-    checkbox:SetValue(knowen)
+    checkbox:SetValue(Known)
     checkbox.frame:SetScale(1.5)
     checkbox:SetWidth(20)
     checkbox:SetHeight(35)
   
     checkbox:SetCallback("OnValueChanged", function(widget, event, value)
-      checkbox:SetValue(knowen)
+      checkbox:SetValue(Known) -- locks it to "Known" without disabling and making it gray
     end)
   
     checkbox.checkbg:SetScript("OnEnter", function(self)
-      GameTooltip:SetOwner(self, "ANCHOR_CURSOR")  -- Tooltip shows near the cursor
-      GameTooltip:SetText(knowen and L["KNOWN_ABILITY_TOOLTIP"] or L["UNKNOWN_ABILITY_TOOLTIP"], 1, 1, 1)  -- Custom tooltip text
+      GameTooltip:SetOwner(self, "ANCHOR_CURSOR")
+      GameTooltip:SetText(Known and L["KNOWN_ABILITY_TOOLTIP"] or L["UNKNOWN_ABILITY_TOOLTIP"], 1, 1, 1)
       GameTooltip:Show()
     end)
   

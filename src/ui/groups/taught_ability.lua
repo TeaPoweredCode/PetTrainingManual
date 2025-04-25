@@ -8,8 +8,7 @@ local PinHelper = Addon.UI.PinHelper
 local Widgets = Addon.UI.Widgets
 
 function TaughtAbility:Create(parent, ability, rankIndex)
-  local knowen = true
-  BaseAbility:AddSkillGroup(parent, ability, rankIndex, knowen)
+  BaseAbility:AddSkillGroup(parent, ability, rankIndex)
   BaseAbility:AddPetLevelGroup(parent, ability, rankIndex)
   BaseAbility:AddTrainingCostGroup(parent, ability, rankIndex)
   
