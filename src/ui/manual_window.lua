@@ -26,8 +26,4 @@ function ManualWindow:CRAFT_SHOW()
     else
         UI:Hide()
     end
-
-
   end
-  
-  
